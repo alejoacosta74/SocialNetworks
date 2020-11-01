@@ -53,6 +53,8 @@ public class EgoGrader extends Grader {
             Graph graph = new CapGraph();
             GraphLoader.loadGraph(graph, "data/facebook_ucsd.txt");
             feedback += "\nGRAPH: facebook_ucsd.txt";
+            //GraphLoader.loadGraph(graph, "data/small_test_graph.txt");
+            //feedback += "\nGRAPH: small_test_graph.txt";
             for (int i = 0; i < 10; i++) {
                 feedback += appendFeedback(i + 1, "Starting from node " + i);
                 // Run user's implementation and make the output readable

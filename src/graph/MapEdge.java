@@ -46,4 +46,9 @@ public class MapEdge {
         //return super.hashCode();
         return Objects.hash(this.start, this.end);
     }
+
+    @Override
+    public String toString() {
+        return ("Edge from: " +  this.getStart().getNode() + " -> to: " + this.getEnd().getNode());
+    }
 }

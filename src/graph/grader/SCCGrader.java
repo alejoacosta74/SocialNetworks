@@ -62,7 +62,7 @@ public class SCCGrader extends Grader {
 
         try {
 
-            for(int i = 0; i < 10; i++) {
+            for(int i = 1; i < 2; i++) {
                 Graph g = new CapGraph();
                 Set<Integer> vertices;
 

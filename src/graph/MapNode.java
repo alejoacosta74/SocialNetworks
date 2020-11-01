@@ -4,7 +4,6 @@ import java.util.HashSet;
 
 public class MapNode {
     private int node;
-    private HashSet<MapEdge> edges ;
 
     public MapNode (int node){
         this.node = node;
@@ -14,14 +13,6 @@ public class MapNode {
         return node;
     }
 
-    public HashSet<MapEdge> getEdges() {
-        return edges;
-    }
-
-    public void setEdges(HashSet<MapEdge> edges) {
-        this.edges = edges;
-    }
-
     public void setNode(int node) {
         this.node = node;
     }
@@ -29,13 +20,19 @@ public class MapNode {
     @Override
     public boolean equals(Object obj) {
         //return super.equals(obj);
-        int otherNode =  (int) obj;
-        return (otherNode == this.node);
+        MapNode otherNode =  (MapNode) obj;
+        return (otherNode.getNode() == this.node);
     }
 
     @Override
     public int hashCode() {
         //return super.hashCode();
         return this.node;
+    }
+
+
+    @Override
+    public String toString() {
+        return ("Node #" + this.getNode());
     }
 }
