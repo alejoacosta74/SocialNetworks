@@ -1,5 +1,4 @@
-/-------------------------------------------------------------------------
-/ Starter Code for Capstone Project in the
+/ Capstone Project in the
 / Java Programming: Object Oriented Design of 
 / Data Structures Specialization:
 /
