@@ -84,19 +84,18 @@ public class CapGraph implements Graph {
 
 	private void DFSvisit (HashMap<Integer, HashSet<Integer>> G, int vertex, HashSet<Integer> visited,Stack<Integer> finished , CapGraph scc){
 		visited.add(vertex);
-		System.out.println("DFSVisit: entering recurrent DFSVisit with vertex visited: " + vertex);
-		for (int n : G.get(vertex)){
-			if (!visited.contains(n)){
-				if (scc!=null){
-					System.out.println("DFSvisit: adding vertex to SCC: " + n + " and edge [" + n+"]->["+vertex+"]");
-					scc.addVertex(n);
-					scc.addEdge(n,vertex);
+		if (G.get(vertex) != null){
+			for (int n : G.get(vertex)){
+				if (!visited.contains(n)){
+					if (scc!=null){
+						scc.addVertex(n);
+						scc.addEdge(n,vertex);
+					}
+					DFSvisit(G, n, visited, finished, scc);
 				}
-				DFSvisit(G, n, visited, finished, scc);
 			}
 		}
 		finished.push(vertex);
-		System.out.println("DFSVisit: just pushed to finish stack vertex: " + vertex);
 	}
 
 	private Stack<Integer> initializeVerticesStack (){
@@ -115,13 +114,10 @@ public class CapGraph implements Graph {
 	}
 
 	private Stack<Integer> DFS (Stack<Integer> vertices ){
-		System.out.println("DFS: Starting DFS with Vertices:");
-		printElements(vertices, "Vertices");
 		HashSet<Integer> visited = new HashSet<>();
 		Stack<Integer> finished = new Stack<>();
 		while (!vertices.isEmpty()){
 			int vertex = vertices.pop();
-			System.out.println("DFS: poping out from stack vertex: " + vertex);
 			if (!visited.contains(vertex)){
 				DFSvisit(this.graph, vertex, visited, finished, null);
 			}
@@ -147,19 +143,13 @@ public class CapGraph implements Graph {
 		HashSet<Integer> visited = new HashSet<>();
 		Stack<Integer> finished = new Stack<>();
 		List<Graph> sccList = new LinkedList<>();
-		System.out.println("DFSgetSCC: About to start DFSgetSCC with the following data");
-		System.out.println("DFSgetSCC: Transposed graph:" + graphT );
-		System.out.println("DFSgetSCC: Stack of vertices (from step1): ");
-		printElements(vertices, "vertices");
 		while (!vertices.isEmpty()){
 			int vertex = vertices.pop();
-			System.out.println("DFSgetSCC: poping out from stack vertex: " + vertex);
 			if (!visited.contains(vertex)){
 				CapGraph SCC = new CapGraph();
 				SCC.addVertex(vertex);
-				System.out.println("DFSgetSCC: Creating new SCC with first Vertex: " + vertex);
 				DFSvisit(graphT, vertex, visited, finished, SCC);
-				System.out.println("Adding last edge to SCC: [" + vertex + "]->");
+				//System.out.println("Adding last edge to SCC: [" + vertex + "]->");
 				sccList.add(SCC);
 			}
 		}

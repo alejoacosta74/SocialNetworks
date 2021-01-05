@@ -62,7 +62,7 @@ public class SCCGrader extends Grader {
 
         try {
 
-            for(int i = 1; i < 2; i++) {
+            for(int i = 0; i < 10; i++) {
                 Graph g = new CapGraph();
                 Set<Integer> vertices;
 
@@ -90,6 +90,7 @@ public class SCCGrader extends Grader {
 
 
                 // get student SCC result
+
                 List<Graph> graphSCCs = g.getSCCs();
 
                 List<Set<Integer>> sccs = new ArrayList<Set<Integer>>();
@@ -178,6 +179,7 @@ public class SCCGrader extends Grader {
             }
         } catch (Exception e) {
             feedback = "An error occurred during runtime.\n" + feedback + "\nError during runtime: " + e;
+            e.printStackTrace();
             testsPassed = 0;
             totalTests = 1;
         }
